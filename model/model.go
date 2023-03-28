@@ -2,6 +2,7 @@ package model
 
 import (
 	"CyberAssetMapper/model/db"
+	"fmt"
 	"gorm.io/gorm"
 )
 
@@ -14,4 +15,16 @@ type Task struct {
 func Create_taskTable() {
 	db.GLOBAL_DB.AutoMigrate(&Task{})
 	//创建Task表
+}
+
+func Insert_Task(domain string) {
+	task := &Task{
+		Domain: domain,
+	}
+	dbres := db.GLOBAL_DB.Create(task)
+	if dbres.Error != nil {
+		panic(dbres.Error)
+	} else {
+		fmt.Println("插入成功")
+	}
 }
