@@ -1,7 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"CyberAssetMapper/model"
+	"CyberAssetMapper/model/db"
+)
 
 func main() {
-	fmt.Println("hello world")
+	//初始化数据库之后新建数据库
+	db.InitDB()
+	model.Create_taskTable()
+
 }
