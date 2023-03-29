@@ -18,7 +18,7 @@ func Create_taskTable() {
 	//创建Task表
 }
 
-func Insert_Task(domain string) {
+func Insert_Task(domain string) (*Task, error) {
 	task := &Task{
 		Domain: domain,
 	}
@@ -27,11 +27,23 @@ func Insert_Task(domain string) {
 		panic(dbres.Error)
 	} else {
 		fmt.Println("插入成功")
+		return task, nil
 	}
 }
 
-func Get_Task(id int) {
+func Get_Task(id int) Task {
 	var task Task
 	db.GLOBAL_DB.Select("id,domain").Find(&task, id)
 	fmt.Println(task)
+	return task
+}
+
+// 更新任务状态
+func Update_Task(id int, state bool) {
+	task := &Task{}
+
+	db := db.GLOBAL_DB.Model(&task).Where("id = ?", id).Update("state", state)
+	if db.Error != nil {
+		fmt.Println(db.Error)
+	}
 }
