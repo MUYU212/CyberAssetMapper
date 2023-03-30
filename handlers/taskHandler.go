@@ -47,3 +47,15 @@ func CreateTask(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, taskResponse)
 }
+
+// 开始任务将state设置为1
+func StartTask(c *gin.Context) {
+	taskID := c.Param("id")
+	id, err := strconv.Atoi(taskID)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	model.Update_Task(id, 1)
+	c.JSON(http.StatusOK, gin.H{"message": "success"})
+}

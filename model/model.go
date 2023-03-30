@@ -39,7 +39,7 @@ func Get_Task(id int) Task {
 }
 
 // 更新任务状态
-func Update_Task(id int, state bool) {
+func Update_Task(id int, state int) {
 	task := &Task{}
 
 	db := db.GLOBAL_DB.Model(&task).Where("id = ?", id).Update("state", state)
