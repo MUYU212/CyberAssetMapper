@@ -2,29 +2,29 @@ package SubDomain
 
 import (
 	"bufio"
+	_ "embed"
 	"fmt"
 	"log"
 	"math/rand"
 	"net"
 	"os"
 	"strconv"
+	"strings"
 	"sync"
 	"time"
 )
 
+//go:embed data/temp.txt
+var subdomains string
+
 func getSubdomainInFile() []string {
-	dir, _ := os.Getwd()
-	filename := dir + "/Plugins/data/subdomain.txt"
-
-	lines, err := readLines(filename)
-
-	if err != nil {
-		fmt.Println("读取文件时出错")
-		fmt.Println(err)
-		return nil
+	reader := bufio.NewScanner(strings.NewReader(subdomains))
+	reader.Split(bufio.ScanLines) //bufio.ScanLines其实就是文本的换行符，将文本的数据逐行分割成切片
+	var ret []string
+	for reader.Scan() { //逐行读取
+		ret = append(ret, reader.Text()) //将读取的数据添加到切片中
 	}
-	return lines
-
+	return ret
 }
 
 func GetSubDomain(domain string) []string {
@@ -38,9 +38,9 @@ func GetSubDomain(domain string) []string {
 		for _, subdomain := range getSubdomainInFile() {
 			go func(subdomain string) {
 				defer wg.Done()
-				//log.Println("正在尝试解析" + subdomain + "." + domain)
-				domain = subdomain + "." + domain
-				response := lookupDomain(domain)
+
+				//log.Println("正在尝试解析====>" + subdomain + "." + domain)
+				response := lookupSubDomain(subdomain, domain)
 				if response != "" {
 					result = append(result, response)
 				}
@@ -54,9 +54,9 @@ func GetSubDomain(domain string) []string {
 
 //这里直接查询域名，不查询子域名
 
-func lookupDomain(domain string) string {
+func lookupSubDomain(subdomain, domain string) string {
 
-	fqdn := fmt.Sprintf("%s", domain)
+	fqdn := fmt.Sprintf("%s.%s", subdomain, domain)
 	_, err := net.LookupIP(fqdn)
 	if err != nil {
 		return ""
@@ -92,8 +92,8 @@ func isWildCard(domain string) bool {
 	max := 99999
 	num := rand.Intn(max-min+1) + min
 	str := strconv.Itoa(num)
-	randomDomain := str + "." + domain
-	s := lookupDomain(randomDomain)
+
+	s := lookupSubDomain(str, domain)
 	if s != "" {
 		log.Println("域名使用了泛解析")
 		flag = true

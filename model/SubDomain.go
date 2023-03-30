@@ -4,6 +4,7 @@ import (
 	"CyberAssetMapper/model/db"
 	"fmt"
 	"gorm.io/gorm"
+	"log"
 )
 
 type SubDomain struct {
@@ -17,14 +18,14 @@ func Create_subDomainTable() {
 	//创建SubDomain表
 }
 
-//插入子域名
+// 插入子域名
 func Insert_SubDomain(Domain string, taskID uint) (*SubDomain, error) {
 
 	subDomain := &SubDomain{
 		Domain: Domain,
 		TaskID: taskID,
 	}
-
+	log.Printf("subdomain is %v", subDomain)
 	dbres := db.GLOBAL_DB.Create(subDomain)
 	if dbres.Error != nil {
 		panic(dbres.Error)

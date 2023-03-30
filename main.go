@@ -1,8 +1,7 @@
 package main
 
 import (
-	"CyberAssetMapper/Plugins/SubDomain"
-	"log"
+	_ "embed"
 )
 
 func main() {
@@ -17,6 +16,13 @@ func main() {
 	//r.POST("/task/create", handlers.CreateTask)
 	//r.GET("/task/start/:id", handlers.StartTask)
 	//r.Run(":8888")
-	result := SubDomain.GetSubDomain("hbu.cn")
-	log.Println(result)
+	//result := SubDomain.GetSubDomain("baidu.com")
+	//for _, domain := range result {
+	//	log.Println(domain)
+	//	//插入数据库的操作
+	//	handlers.InsertSubdomain(domain, 1)
+	//}
+	//handlers.InsertSubdomain()
+
 }
+
