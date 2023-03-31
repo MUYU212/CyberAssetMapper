@@ -1,10 +1,16 @@
 package main
 
 import (
+	"CyberAssetMapper/model"
+	"CyberAssetMapper/model/db"
 	_ "embed"
 )
 
 func main() {
+
+	db.InitDB()
+	model.QueryData()
+
 	//初始化数据库之后新建数据库
 	//db.InitDB()
 	////model.Create_taskTable()
@@ -25,4 +31,3 @@ func main() {
 	//handlers.InsertSubdomain()
 
 }
-
