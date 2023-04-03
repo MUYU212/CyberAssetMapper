@@ -2,14 +2,14 @@ package main
 
 import (
 	"CyberAssetMapper/model"
-	"CyberAssetMapper/model/db"
 	_ "embed"
 )
 
 func main() {
 
-	db.InitDB()
-	model.QueryData()
+	model.InitDB()
+	defer model.CloseDB()
+	model.InsertTask("河北大学测绘项目", "hbu.cn")
 
 	//初始化数据库之后新建数据库
 	//db.InitDB()
