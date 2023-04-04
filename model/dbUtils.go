@@ -1,36 +1,35 @@
 package model
 
 import (
-	"database/sql"
 	"fmt"
-	_ "github.com/go-sql-driver/mysql" // 导入相应的数据库驱动包，这里以MySQL为例
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
+	"gorm.io/gorm/schema"
 )
 
 var (
-	db  *sql.DB
-	err error // 声明 err 变量
+	db  *gorm.DB
+	err error
 )
 
 func InitDB() {
-	dsn := "root:Admin@123@tcp(127.0.0.1:3306)/CyberAssetMapper"
-	db, err = sql.Open("mysql", dsn)
-	if err != nil {
-		fmt.Println("数据库连接失败:", err)
-		return
-	}
-
-	// 测试数据库连接
-	err = db.Ping()
-	if err != nil {
-		fmt.Println("数据库连接测试失败:", err)
-		return
-	}
-
-	fmt.Println("数据库连接成功")
+	db, err = gorm.Open(mysql.New(mysql.Config{
+		DSN: "root:Admin@123@tcp(127.0.0.1:3306)/CyberAssetMapper?charset=utf8&parseTime=True&loc=Local", // DSN data source name
+	}), &gorm.Config{
+		SkipDefaultTransaction: false,
+		NamingStrategy: schema.NamingStrategy{
+			TablePrefix:   "t_",
+			SingularTable: true, //使用单数表名
+		},
+		DisableForeignKeyConstraintWhenMigrating: true, //禁用外键约束，使用逻辑外键
+	})
+	fmt.Println(db, err)
 }
 
 func CloseDB() {
-	if db != nil {
-		db.Close()
+	sqlDB, err := db.DB()
+	if err != nil {
+		fmt.Println(err)
 	}
+	sqlDB.Close()
 }

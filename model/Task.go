@@ -1,21 +1,32 @@
 package model
 
 import (
-	"fmt"
-	"time"
+	"gorm.io/gorm"
 )
 
-func InsertTask(taskName, domain string) (int64, error) {
-	sqlStr := "insert into t_task(task_name,created_at,domain,state) values (?,?,?,?)"
-	//默认未开始是0，开始是1，完成是2
-	ret, err := db.Exec(sqlStr, taskName, time.Now(), domain, 0)
-	if err != nil {
-		fmt.Println("Failed to insert data:", err)
-		return 0, err
+type Task struct {
+	gorm.Model
+	TaskName  string
+	Domain    string
+	IsDeleted int64
+	State     int64
+}
+
+func Create_taskTable() {
+	db.AutoMigrate(&Task{})
+	//创建Task表
+}
+
+func InsertTask(taskName string, domain string) {
+	db.Create(&Task{TaskName: taskName, Domain: domain, IsDeleted: 0, State: 1})
+
+}
+
+func GetTaskByName() {
+	tasks := []Task{}
+	db.Find(&tasks)
+	for _, task := range tasks {
+		println(task.TaskName)
+		println(task.Domain)
 	}
-	lastInsertId, err := ret.LastInsertId()
-	if err != nil {
-		return 0, err
-	}
-	return lastInsertId, nil
 }
