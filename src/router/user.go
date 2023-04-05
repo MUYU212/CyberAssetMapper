@@ -12,6 +12,7 @@ func InitUserRoutes() {
 				"msg": "Login Success",
 			})
 		})
+		//这里其实应该是定义了一个权限校验的rgAuthUser，然后在这里使用
 		rgAuthUser := rgAuth.Group("user")
 		rgAuthUser.GET("", func(ctx *gin.Context) {
 			ctx.AbortWithStatusJSON(http.StatusOK, gin.H{
