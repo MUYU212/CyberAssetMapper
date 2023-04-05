@@ -1,8 +1,8 @@
 package main
 
 import (
+	"CyberAssetMapper/src/cmd"
 	_ "embed"
-	"fmt"
 )
 
 func main() {
@@ -12,9 +12,6 @@ func main() {
 	////model.Create_taskTable()
 	////model.InsertTask("河北大学测绘项目", "hbu.cn")
 	//model.GetTaskByName()
-	var name string
-	name = "hello world xxxx"
-	if name != "" {
-		fmt.Println(name)
-	}
+	defer cmd.Clean()
+	cmd.Start()
 }
