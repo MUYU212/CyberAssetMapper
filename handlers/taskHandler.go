@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"CyberAssetMapper/model"
+	model2 "CyberAssetMapper/src/model"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
@@ -17,7 +18,7 @@ type TaskResponse struct {
 // 根据id查询任务信息
 func GetTaskByID(c *gin.Context) {
 	taskID := c.Param("id")
-	var task model.Task
+	var task model2.Task
 	id, err := strconv.Atoi(taskID)
 	task = model.Get_Task(id)
 	if err != nil {
@@ -29,7 +30,7 @@ func GetTaskByID(c *gin.Context) {
 
 // 插入数据库
 func CreateTask(c *gin.Context) {
-	var task model.Task
+	var task model2.Task
 	err := c.ShouldBindJSON(&task)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
