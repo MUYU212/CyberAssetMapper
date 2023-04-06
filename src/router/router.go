@@ -1,10 +1,13 @@
 package router
 
 import (
+	_ "CyberAssetMapper/docs"
 	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 	"net/http"
 	"os/signal"
 	"syscall"
@@ -32,6 +35,9 @@ func InitRouter() {
 		//这里是循环gfnRoutes方法，得到其中的值，然后这里的值中其实是需要注册进去的方法，需要的参数也是这两个参数，真的巧妙
 		fnRegistRoute(rgPublic, rgAuth)
 	}
+
+	//集成swagger
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	stPort := viper.GetString("server.port")
 	if stPort == "" {

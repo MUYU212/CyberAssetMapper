@@ -5,6 +5,9 @@ import (
 	_ "embed"
 )
 
+// @title 资产测绘系统 API Doc
+// @version 0.0.1
+// @description 资产测绘系统
 func main() {
 
 	//model.InitDB()
