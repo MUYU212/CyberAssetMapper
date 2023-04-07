@@ -1,2 +1,9 @@
+mode:
+    debug: true
 server:
   port: 8090
+
+log:
+  MaxSize: 1      #日志文件最大值，单位M，超过则切割
+  MaxBackups: 10  #最多保留多少个日志文件
+  MaxAge: 90      #日志文件最长保存时间，单位天

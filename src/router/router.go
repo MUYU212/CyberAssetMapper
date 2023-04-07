@@ -2,6 +2,7 @@ package router
 
 import (
 	_ "CyberAssetMapper/docs"
+	"CyberAssetMapper/src/global"
 	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -50,10 +51,10 @@ func InitRouter() {
 	}
 
 	go func() {
-		fmt.Println(fmt.Sprintf("Start Server Listen:%s\n", stPort))
+		global.Logger.Info(fmt.Sprintf("Start Server Listen:%s", stPort))
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			//TODO: 这里需要记录日志
-			panic(fmt.Sprintf("Start Server Error: %s\n", err.Error()))
+			global.Logger.Error(fmt.Sprintf("Start Server Error: %s\n", err.Error()))
 			return
 		}
 	}()
@@ -64,11 +65,10 @@ func InitRouter() {
 	defer cancelShutdown()
 
 	if err := server.Shutdown(ctx); err != nil {
-		//todo: 这里需要记录日志
-		panic(fmt.Sprintf("Shutdown Server Error: %s\n", err.Error()))
+		global.Logger.Error(fmt.Sprintf("Shutdown Server Error: %s\n", err.Error()))
 		return
 	}
-	fmt.Println("Shutdown Server Success")
+	global.Logger.Info("Shutdown Server Success")
 }
 
 func RegistRoute(fn IFnRegistRoute) {

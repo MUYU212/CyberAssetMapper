@@ -5,6 +5,7 @@ import (
 	"net/http"
 )
 
+// 定义了一个UserApi的结构体
 type UserApi struct {
 }
 
@@ -21,6 +22,7 @@ func NewUserApi() UserApi {
 // @Failure 401 {string} string "登录失败"
 // @Router /api/v1/public/user/login [post]
 func (m UserApi) Login(ctx *gin.Context) {
+	//该方法属于一个结构体，所以可以直接使用结构体中的方法
 	ctx.AbortWithStatusJSON(http.StatusOK, gin.H{
 		"msg": "Login Success",
 	})
