@@ -6,8 +6,15 @@ server:
 
 db:
   dsn: root:Admin@123@tcp(127.0.0.1:3306)/CyberAssetMapper?charset=utf8&parseTime=True&loc=Local
-  maxIdleConns: 10
-  maxOpenConns : 100
+  maxIdleConn: 10
+  maxOpenConn : 100
+
+redis:
+  url: localhost:6379
+
+jwt:
+  tokenExpire: 30 #token有效市场，单位min
+  signingKey: Red256  #签名密钥
 log:
   MaxSize: 1      #日志文件最大值，单位M，超过则切割
   MaxBackups: 10  #最多保留多少个日志文件

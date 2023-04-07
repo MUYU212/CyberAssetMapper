@@ -28,8 +28,8 @@ func InitDB() (*gorm.DB, error) {
 		DisableForeignKeyConstraintWhenMigrating: true, //禁用外键约束，使用逻辑外键
 	})
 	sqlDB, _ := db.DB()
-	sqlDB.SetMaxIdleConns(viper.GetInt("db.maxIdleConns")) //最大空闲连接数
-	sqlDB.SetMaxOpenConns(viper.GetInt("db.maxOpenConns")) //最大连接数
+	sqlDB.SetMaxIdleConns(viper.GetInt("db.maxIdleConn")) //最大空闲连接数
+	sqlDB.SetMaxOpenConns(viper.GetInt("db.maxOpenConn")) //最大连接数
 	sqlDB.SetConnMaxLifetime(time.Hour)
 
 	db.AutoMigrate(&model.User{})
