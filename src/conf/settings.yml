@@ -1,8 +1,13 @@
 mode:
-    debug: true
+  develop: true
+  debug: true
 server:
   port: 8090
 
+db:
+  dsn: root:Admin@123@tcp(127.0.0.1:3306)/CyberAssetMapper?charset=utf8&parseTime=True&loc=Local
+  maxIdleConns: 10
+  maxOpenConns : 100
 log:
   MaxSize: 1      #日志文件最大值，单位M，超过则切割
   MaxBackups: 10  #最多保留多少个日志文件
