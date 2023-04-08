@@ -6,11 +6,14 @@ import (
 	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
+	"github.com/go-playground/validator/v10"
 	"github.com/spf13/viper"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"net/http"
 	"os/signal"
+	"strings"
 	"syscall"
 	"time"
 )
@@ -31,7 +34,12 @@ func InitRouter() {
 	rgPublic := r.Group("/api/v1/public") //公开接口
 	rgAuth := r.Group("/api/v1/")         //需要鉴权的接口
 
+	//注册平台基础路由
 	InitBasePlatformRoutes()
+
+	//注册自定义验证器
+	registCustValidator()
+
 	for _, fnRegistRoute := range gfnRoutes {
 		//这里是循环gfnRoutes方法，得到其中的值，然后这里的值中其实是需要注册进去的方法，需要的参数也是这两个参数，真的巧妙
 		fnRegistRoute(rgPublic, rgAuth)
@@ -82,4 +90,17 @@ func RegistRoute(fn IFnRegistRoute) {
 
 func InitBasePlatformRoutes() {
 	InitUserRoutes()
+}
+
+func registCustValidator() {
+	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
+		_ = v.RegisterValidation("first_is_a", func(fl validator.FieldLevel) bool {
+			if value, ok := fl.Field().Interface().(string); ok {
+				if value != "" && strings.Index(value, "a") == 0 {
+					return true
+				}
+			}
+			return false
+		})
+	}
 }

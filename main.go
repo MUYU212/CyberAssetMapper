@@ -1,9 +1,8 @@
 package main
 
 import (
-	"CyberAssetMapper/src/utils"
+	"CyberAssetMapper/src/cmd"
 	_ "embed"
-	"fmt"
 )
 
 // @title 资产测绘系统 API Doc
@@ -11,11 +10,11 @@ import (
 // @description 资产测绘系统
 func main() {
 
-	//defer cmd.Clean()
-	//cmd.Start()
-	token, _ := utils.GenerateToken(1, "zs")
-	fmt.Println(token)
-	fmt.Println(utils.IsTokenValid(token))
-	fmt.Println(utils.IsTokenValid(token + "xxxx"))
+	defer cmd.Clean()
+	cmd.Start()
+	//token, _ := utils.GenerateToken(1, "zs")
+	//fmt.Println(token)
+	//fmt.Println(utils.IsTokenValid(token))
+	//fmt.Println(utils.IsTokenValid(token + "xxxx"))
 
 }
