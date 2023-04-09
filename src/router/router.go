@@ -3,6 +3,7 @@ package router
 import (
 	_ "CyberAssetMapper/docs"
 	"CyberAssetMapper/src/global"
+	"CyberAssetMapper/src/middleware"
 	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -31,6 +32,7 @@ func InitRouter() {
 	defer cancelCtx()
 
 	r := gin.Default()
+	r.Use(middleware.Cors())
 	rgPublic := r.Group("/api/v1/public") //公开接口
 	rgAuth := r.Group("/api/v1/")         //需要鉴权的接口
 

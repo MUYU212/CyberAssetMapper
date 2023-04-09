@@ -3,6 +3,7 @@ package api
 import (
 	"CyberAssetMapper/src/service"
 	"CyberAssetMapper/src/service/dto"
+	"CyberAssetMapper/src/utils"
 	"github.com/gin-gonic/gin"
 )
 
@@ -39,11 +40,20 @@ func (m UserApi) Login(c *gin.Context) {
 	}
 
 	//结合service了
-	iUser, error := m.Service.Login()
+	iUser, err := m.Service.Login(iUserLoginDTO)
+	if err != nil {
+		m.Fail(ResponseJson{
+			Msg: err.Error(),
+		})
+		return
+	}
+	token, _ := utils.GenerateToken(iUser.ID, iUser.Username)
 
 	m.OK(ResponseJson{
-		Data: iUserLoginDTO,
-		Msg:  "Login Success",
+		Data: gin.H{
+			"token": token,
+			"user":  iUser,
+		},
+		Msg: "Login Success",
 	})
-
 }
