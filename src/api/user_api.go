@@ -1,10 +1,15 @@
 package api
 
 import (
+	"CyberAssetMapper/src/global"
 	"CyberAssetMapper/src/service"
 	"CyberAssetMapper/src/service/dto"
 	"CyberAssetMapper/src/utils"
 	"github.com/gin-gonic/gin"
+)
+
+const (
+	ERR_CODE_ADD_USER = 10011
 )
 
 // 定义了一个UserApi的结构体
@@ -47,7 +52,7 @@ func (m UserApi) Login(c *gin.Context) {
 		})
 		return
 	}
-	token, _ := utils.GenerateToken(iUser.ID, iUser.Username)
+	token, _ := utils.GenerateToken(iUser.ID, iUser.Name)
 
 	m.OK(ResponseJson{
 		Data: gin.H{
@@ -55,5 +60,27 @@ func (m UserApi) Login(c *gin.Context) {
 			"user":  iUser,
 		},
 		Msg: "Login Success",
+	})
+}
+
+func (m UserApi) AddUser(c *gin.Context) {
+	var iUserAddDTO dto.UserAddDTO
+	if err := m.BuildRequest(BuildRequestOption{
+		Ctx: c,
+		DTO: &iUserAddDTO,
+	}).GetError(); err != nil {
+		return
+	}
+	global.Logger.Info(iUserAddDTO.Name)
+	err := m.Service.AddUser(&iUserAddDTO)
+	if err != nil {
+		m.Fail(ResponseJson{
+			Code: ERR_CODE_ADD_USER,
+			Msg:  err.Error(),
+		})
+		return
+	}
+	m.OK(ResponseJson{
+		Data: iUserAddDTO,
 	})
 }

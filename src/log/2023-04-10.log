@@ -1,0 +1,25 @@
+{"level":"ERROR","time":"2023-04-10 12:26:13.340","msg":"初始化redis失败"}
+{"level":"ERROR","time":"2023-04-10 12:26:13.530","msg":"dial tcp [::1]:6379: connect: connection refused"}
+{"level":"INFO","time":"2023-04-10 12:26:38.659","msg":"Start Server Listen:8090"}
+{"level":"INFO","time":"2023-04-10 12:27:01.089","msg":"Shutdown host: 127.0.0.1"}
+{"level":"INFO","time":"2023-04-10 13:50:12.329","msg":"Shutdown Server Success"}
+{"level":"INFO","time":"2023-04-10 17:00:13.552","msg":"Start Server Listen:8090"}
+{"level":"INFO","time":"2023-04-10 17:09:45.569","msg":"Shutdown Server Success"}
+{"level":"INFO","time":"2023-04-10 17:09:49.194","msg":"Start Server Listen:8090"}
+{"level":"INFO","time":"2023-04-10 17:09:52.835","msg":"admin"}
+{"level":"INFO","time":"2023-04-10 17:10:46.207","msg":"admin"}
+{"level":"INFO","time":"2023-04-10 17:11:26.402","msg":"admin"}
+{"level":"INFO","time":"2023-04-10 17:12:01.778","msg":"admin"}
+{"level":"INFO","time":"2023-04-10 17:14:23.879","msg":"Shutdown Server Success"}
+{"level":"INFO","time":"2023-04-10 17:14:27.502","msg":"Start Server Listen:8090"}
+{"level":"INFO","time":"2023-04-10 17:14:30.058","msg":"admin"}
+{"level":"INFO","time":"2023-04-10 17:14:31.420","msg":"admin"}
+{"level":"INFO","time":"2023-04-10 17:15:14.549","msg":"Shutdown Server Success"}
+{"level":"INFO","time":"2023-04-10 17:15:17.614","msg":"Start Server Listen:8090"}
+{"level":"INFO","time":"2023-04-10 17:15:27.862","msg":"admin"}
+{"level":"INFO","time":"2023-04-10 17:15:27.868","msg":"CheckUserExist: admin, 0"}
+{"level":"INFO","time":"2023-04-10 17:15:48.428","msg":"Shutdown Server Success"}
+{"level":"INFO","time":"2023-04-10 17:15:50.509","msg":"Start Server Listen:8090"}
+{"level":"INFO","time":"2023-04-10 17:15:52.600","msg":"admin"}
+{"level":"INFO","time":"2023-04-10 17:15:52.601","msg":"CheckUserExist: admin, 6"}
+{"level":"INFO","time":"2023-04-10 17:22:07.771","msg":"Shutdown Server Success"}

@@ -31,3 +31,10 @@ func (m *UserService) Login(iUserDTO dto.UserLoginDTO) (model.User, error) {
 	}
 	return iUser, errResult
 }
+
+func (m *UserService) AddUser(iUserAddDTO *dto.UserAddDTO) error {
+	if m.Dao.CheckUserExist(iUserAddDTO.Name) {
+		return errors.New("User Already Exist")
+	}
+	return m.Dao.AddUser(iUserAddDTO)
+}
