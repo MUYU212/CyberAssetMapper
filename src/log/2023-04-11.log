@@ -1,0 +1,14 @@
+{"level":"INFO","time":"2023-04-11 13:38:16.537","msg":"Start Server Listen:8090"}
+{"level":"INFO","time":"2023-04-11 13:41:23.926","msg":"admin"}
+{"level":"INFO","time":"2023-04-11 13:41:23.928","msg":"CheckUserExist: admin, 0"}
+{"level":"INFO","time":"2023-04-11 13:41:26.192","msg":"admin"}
+{"level":"INFO","time":"2023-04-11 13:41:26.195","msg":"CheckUserExist: admin, 1"}
+{"level":"INFO","time":"2023-04-11 13:41:26.792","msg":"admin"}
+{"level":"INFO","time":"2023-04-11 13:41:26.794","msg":"CheckUserExist: admin, 1"}
+{"level":"INFO","time":"2023-04-11 13:41:29.550","msg":"admin1"}
+{"level":"INFO","time":"2023-04-11 13:41:29.551","msg":"CheckUserExist: admin1, 0"}
+{"level":"INFO","time":"2023-04-11 13:41:32.525","msg":"admin2"}
+{"level":"INFO","time":"2023-04-11 13:41:32.526","msg":"CheckUserExist: admin2, 0"}
+{"level":"INFO","time":"2023-04-11 13:41:35.355","msg":"admin3"}
+{"level":"INFO","time":"2023-04-11 13:41:35.359","msg":"CheckUserExist: admin3, 0"}
+{"level":"INFO","time":"2023-04-11 13:41:57.340","msg":"Shutdown Server Success"}

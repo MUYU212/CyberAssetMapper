@@ -38,3 +38,6 @@ func (m *UserService) AddUser(iUserAddDTO *dto.UserAddDTO) error {
 	}
 	return m.Dao.AddUser(iUserAddDTO)
 }
+func (m *UserService) GetUserList(iUserListDTO *dto.UserListDTO) ([]model.User, int64, error) {
+	return m.Dao.GetUserList(iUserListDTO)
+}

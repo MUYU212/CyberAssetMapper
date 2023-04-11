@@ -1,15 +1,15 @@
 package SubDomain
 
 import (
+	"CyberAssetMapper/src/utils"
 	"bytes"
-	"fmt"
 	"github.com/projectdiscovery/subfinder/v2/pkg/resolve"
 	"github.com/projectdiscovery/subfinder/v2/pkg/runner"
 	"io"
 	"log"
 )
 
-func Subfinder(domain string) {
+func Subfinder(domain string) []string {
 	runnerInstance, err := runner.NewRunner(&runner.Options{
 		Threads:            10,                       //使用的线程数量
 		Timeout:            30,                       //超时时间
@@ -29,6 +29,6 @@ func Subfinder(domain string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	fmt.Printf("%s", data)
+	lines := utils.SplitLines(string(data))
+	return lines
 }

@@ -43,3 +43,16 @@ func (m *UserDao) AddUser(iUserAddDTO *dto.UserAddDTO) error {
 	}
 	return err
 }
+
+func (m *UserDao) GetUserList(iUserListDTO *dto.UserListDTO) ([]model.User, int64, error) {
+	var iUserList []model.User
+	var nTotal int64
+	err := m.Orm.Model(&model.User{}).Scopes(
+		Paginate(iUserListDTO.Paginate)).
+		Find(&iUserList).
+		Offset(-1).Limit(-1).
+		Count(&nTotal).
+		Error
+
+	return iUserList, nTotal, err
+}

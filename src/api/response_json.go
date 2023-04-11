@@ -11,6 +11,7 @@ type ResponseJson struct {
 	Code   int    `json:"code,omitempty'"` //自定义的响应标志头
 	Msg    string `json:"msg,omitempty"`
 	Data   any    `json:"data,omitempty"`
+	Total  int64  `json:"total,omitempty"`
 }
 
 func (m ResponseJson) IsEmpty() bool {

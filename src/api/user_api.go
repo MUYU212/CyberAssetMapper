@@ -9,7 +9,8 @@ import (
 )
 
 const (
-	ERR_CODE_ADD_USER = 10011
+	ERR_CODE_ADD_USER      = 10011
+	ERR_CODE_GET_USER_LIST = 10013
 )
 
 // 定义了一个UserApi的结构体
@@ -82,5 +83,27 @@ func (m UserApi) AddUser(c *gin.Context) {
 	}
 	m.OK(ResponseJson{
 		Data: iUserAddDTO,
+	})
+}
+
+func (m *UserApi) GetUserList(c *gin.Context) {
+	var iUserListDTO dto.UserListDTO
+	if err := m.BuildRequest(BuildRequestOption{
+		Ctx: c,
+		DTO: &iUserListDTO,
+	}).GetError(); err != nil {
+		return
+	}
+	iUserList, total, err := m.Service.GetUserList(&iUserListDTO)
+	if err != nil {
+		m.ServerFail(ResponseJson{
+			Code: ERR_CODE_GET_USER_LIST,
+			Msg:  err.Error(),
+		})
+		return
+	}
+	m.OK(ResponseJson{
+		Data:  iUserList,
+		Total: total,
 	})
 }

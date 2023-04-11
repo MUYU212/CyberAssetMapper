@@ -13,6 +13,12 @@ type UserAddDTO struct {
 	Password string `json:"password,omitempty" binding:"required" message:"密码不能为空"`
 }
 
+// ===
+// 用户列表相关DTO
+type UserListDTO struct {
+	Paginate
+}
+
 func (m *UserAddDTO) ConvertToModel(iUser *model.User) {
 	iUser.Name = m.Name
 	iUser.Password = m.Password

@@ -1,6 +1,7 @@
 package test
 
 import (
+	"CyberAssetMapper/src/utils"
 	"bytes"
 	"fmt"
 	"github.com/projectdiscovery/subfinder/v2/pkg/resolve"
@@ -34,6 +35,8 @@ func subfinderTest() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	fmt.Printf("%s", data)
+	lines := utils.SplitLines(string(data))
+	for _, value := range lines {
+		fmt.Println(value)
+	}
 }
