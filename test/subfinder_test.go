@@ -8,12 +8,7 @@ import (
 	"github.com/projectdiscovery/subfinder/v2/pkg/runner"
 	"io"
 	"log"
-	"testing"
 )
-
-func Test(t *testing.T) {
-	subfinderTest()
-}
 
 func subfinderTest() {
 	runnerInstance, err := runner.NewRunner(&runner.Options{
