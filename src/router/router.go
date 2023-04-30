@@ -93,6 +93,7 @@ func RegistRoute(fn IFnRegistRoute) {
 func InitBasePlatformRoutes() {
 	InitUserRoutes()
 	InitHostRoutes()
+	InitTaskRoutes()
 }
 
 func registCustValidator() {

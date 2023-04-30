@@ -1,0 +1,11 @@
+{"level":"ERROR","time":"2023-04-30 14:28:59.699","msg":"初始化redis失败"}
+{"level":"ERROR","time":"2023-04-30 14:28:59.889","msg":"dial tcp 127.0.0.1:6379: connect: connection refused"}
+{"level":"INFO","time":"2023-04-30 14:29:16.206","msg":"Start Server Listen:8090"}
+{"level":"INFO","time":"2023-04-30 14:35:00.329","msg":"Shutdown Server Success"}
+{"level":"INFO","time":"2023-04-30 14:35:03.238","msg":"Start Server Listen:8090"}
+{"level":"INFO","time":"2023-04-30 14:37:16.330","msg":"顺丰SRC"}
+{"level":"INFO","time":"2023-04-30 14:39:14.417","msg":"Shutdown Server Success"}
+{"level":"INFO","time":"2023-04-30 14:39:18.859","msg":"Start Server Listen:8090"}
+{"level":"INFO","time":"2023-04-30 14:39:36.442","msg":"顺丰SRC"}
+{"level":"INFO","time":"2023-04-30 14:40:12.812","msg":"顺丰SRC"}
+{"level":"INFO","time":"2023-04-30 14:40:13.440","msg":"顺丰SRC"}

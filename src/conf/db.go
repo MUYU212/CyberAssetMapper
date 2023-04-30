@@ -33,6 +33,7 @@ func InitDB() (*gorm.DB, error) {
 	sqlDB.SetConnMaxLifetime(time.Hour)
 
 	db.AutoMigrate(&model.User{})
+	db.AutoMigrate(&model.Task{})
 
 	if err != nil {
 		return nil, err
